@@ -12,9 +12,9 @@ title                    : "Liyan Huang"
 title_separator          : "-"
 name                     : &name "Liyan Huang"
 description              : &description "personal description"
-url                      : https://hly2019.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : https://LiyanH2025.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "hly2019/hly2019.github.io"
+repository               : "LiyanH2025/LiyanH2025.github.io"
 
 # Site Author - The following control what appear as part of the author content on the side bar.
 #               If a field is blank the icon and link will not appear, otherwise it will be shown.
