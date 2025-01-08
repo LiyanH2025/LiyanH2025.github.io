@@ -22,8 +22,8 @@ My research interests include _Software Engineering_ and _Software Security_, wi
 * Software Engineer Intern, **ByteDance**, _Sep. 2022 - Feb. 2023_
 
 ## Academic Service
-* [ASE 2024 Student Research Competition](https://conf.researchr.org/track/ase-2024/ase-2024-student-research-competition-), Program Committee Member
-* [WWW 2025](https://www2025.thewebconf.org/the-web-conference), Reviewer
+* Program Committee Member, [ASE 2024 Student Research Competition](https://conf.researchr.org/track/ase-2024/ase-2024-student-research-competition-)
+* Reviewer, [WWW 2025](https://www2025.thewebconf.org/the-web-conference)
 
 ## Miscellaneous
 I was a member of the [Sports Enthusiasts Association](https://www.cs.tsinghua.edu.cn/info/1217/4901.htm) in the Department of Computer Science and Technology at Tsinghua University.
