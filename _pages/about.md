@@ -26,8 +26,8 @@ My research interests include _Software Engineering_ and _Software Security_, wi
 * [WWW 2025](https://www2025.thewebconf.org/the-web-conference), Reviewer
 
 ## Miscellaneous
-I was a member of [Sports Enthusiasts Association](https://www.cs.tsinghua.edu.cn/info/1217/4901.htm) in the Department of Computer Science and Technology, Tsinghua University.
+I was a member of the [Sports Enthusiasts Association](https://www.cs.tsinghua.edu.cn/info/1217/4901.htm) in the Department of Computer Science and Technology at Tsinghua University.
 
-I was a member of the soccer team in the Department of Computer Science and Technology, Tsinghua University. 
+I was a member of the soccer team in the Department of Computer Science and Technology at Tsinghua University. 
 
 
