@@ -11,15 +11,15 @@ redirect_from:
 Hi there, my name is Liyan Huang. I'm currently in my second year pursuing a master's degree in Computer Science at University of Southern California, where I'm happy to get advice and work with [Professor Weihang Wang](https://weihang-wang.github.io). Prior to enrolling at USC, I obtained my Bachelor's degree in Computer Science and Technology from Tsinghua University.
 I'm also honored to have the chance to work at ByteDance as a software engineer intern for half a year.
 
-My research interests lie in software engineering and software security. I'm especially interested in WebAssembly and its related research issues. I'm also open to other research areas like NLP and Computer Systems. I always hope to build sound and reliable software systems and make real contributions to the community.
+My research interests include _Software Engineering_ and _Software Security_, with a particular emphasis on _WebAssembly_ and its associated research topics. My current work focuses on developing testing and analysis techniques to enhance WebAssembly’s reliability. I am also open to exploring other research areas, such as NLP and Computer Systems. I always hope to build sound software systems and make meaningful contributions to the community.
 
 
 ## Education
-* M.S. in Computer Science, **University of Southern California**, 2023 - 2025
-* B.E. in Computer Science and Technology, **Tsinghua University**, 2019 - 2023
+* M.S. in Computer Science, **University of Southern California**, _2023 - 2025_
+* B.E. in Computer Science and Technology, **Tsinghua University**, _2019 - 2023_
 
 ## Work Experience
-* Software Engineer Intern, **ByteDance**, Sep. 2022 - Feb. 2023
+* Software Engineer Intern, **ByteDance**, _Sep. 2022 - Feb. 2023_
 
 ## Academic Service
 * [ASE 2024 Student Research Competition](https://conf.researchr.org/track/ase-2024/ase-2024-student-research-competition-), Program Committee Member
