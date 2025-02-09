@@ -1,72 +1,109 @@
-{% include base_path %}
-
-{% if post.header.teaser %}
-  {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
-{% else %}
-  {% assign teaser = site.teaser %}
-{% endif %}
-
-{% if post.id %}
-  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
-{% else %}
-  {% assign title = post.title %}
-{% endif %}
-
-<div class="{{ include.type | default: "list" }}__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    {% if include.type == "grid" and teaser %}
-      <div class="archive__item-teaser">
-        <img src=
-          {% if teaser contains "://" %}
-            "{{ teaser }}"
-          {% else %}
-            "{{ teaser | prepend: "/images/" | prepend: base_path }}"
-          {% endif %}
-          alt="">
+<style>
+  .publication-list {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  
+  .publication-item {
+      padding: 1.5em;
+      margin-bottom: 1.5em;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+  }
+  
+  .publication-item:hover {
+      background-color: #f8f9fa;
+      border: 1px solid #e9ecef;
+      transform: translateX(5px);
+  }
+  
+  .publication-title a {
+      color: #2a2a2a;
+      text-decoration: none;
+      font-size: 1em;
+      font-weight: 500;
+      line-height: 1.4;
+      display: block;
+      margin-bottom: 0.5em;
+      transition: color 0.2s ease;
+  }
+  
+  .publication-title a:hover {
+      color: #0056b3;
+  }
+  
+  .publication-authors {
+      margin: 0.7em 0;
+      color: #495057;
+      font-size: 0.95em;
+      line-height: 1.5;
+  }
+  
+  .publication-venue {
+      font-style: italic;
+      color: #6c757d;
+      font-size: 0.9em;
+      display: flex;
+      align-items: center;
+  }
+  
+  .publication-venue::before {
+      content: "📌";
+      margin-right: 0.5em;
+      font-style: normal;
+  }
+  
+  .equal-contribution {
+      font-size: 0.85em;
+      color: #6c757d;
+      margin-left: 0.5em;
+  }
+  </style>
+  
+  <div class="publication-list">
+    <article class="publication-item">
+      <h2 class="publication-title">
+        <a href="#">
+          Reusing Legacy Code in WebAssembly: Key Challenges of Cross-Compilation and Code Semantics Preservation
+        </a>
+      </h2>
+      <div class="publication-authors">
+        Sara Baradaran, <span style="font-weight: bold;">Liyan Huang</span>, Mukund Raghothaman, and Weihang Wang
       </div>
-    {% endif %}
-
-    <h2 class="archive__item-title" itemprop="headline">
-      {% if post.link %}
-        <!-- <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a> -->
-      {% else %}
-      <a href="{{ post.paperurl }}" style="display: block; width: 150%;">
-        {{ title }}
-      </a>
-            {% endif %}
-    </h2>
-    
-    {% if post.read_time %}
-      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</p>
-    {% endif %}
-        <p style="display: block; width: 150%; font-style: italic;"> Sara Baradaran, <span style="font-weight: bold;"> Liyan Huang</span>, Mukund Raghothaman, Weihang Wang</p>
-        {% if post.collection == 'teaching' %}
-          <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
-        {% elsif post.collection == 'publications' %}
-          <p>Published in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
-        {% elsif post.date %}
-         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
-        {% endif %}
-
-    {% if post.excerpt and site.read_more != 'enabled' %}
-    <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
-    {% elsif post.excerpt and site.read_more == 'enabled' %}
-    <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p>
-    {% endif %}
-    
-    {% if post.citation and post.paperurl and post.slidesurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a></p>
-    {% elsif post.citation and post.paperurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a></p>
-    {% elsif post.citation and post.slidesurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.slidesurl }}">Download Slides</a></p>
-    {% elsif post.citation %}
-      <p>Recommended citation: {{ post.citation }}</p>
-    {% elsif post.paperurl %}
-      <!-- <p><a href=" {{ post.paperurl }} ">Download Paper</a></p> -->
-    {% elsif post.slidesurl %}
-      <p>Download <a href="{{ post.slidesurl }}">Download Slides</a></p></p>
-    {% endif %}
-
-  </article>
-</div>
+      <div class="publication-venue">
+        Arxiv Preprint, 2024
+      </div>
+    </article>
+  
+    <article class="publication-item">
+      <h2 class="publication-title">
+        <a href="#">
+          WaSCR: A WebAssembly Instruction-Timing Side Channel Repairer
+        </a>
+      </h2>
+      <div class="publication-authors">
+        <span style="font-weight: bold;">Liyan Huang*</span>, Junzhou He*, Chao Wang, and Weihang Wang
+        <span class="equal-contribution">(*: equal contribution)</span>
+      </div>
+      <div class="publication-venue">
+        WWW' 2025
+      </div>
+    </article>
+  
+    <article class="publication-item">
+      <h2 class="publication-title">
+        <a href="#">
+          WBSan: WebAssembly Bug Detection for Sanitization and Binary-Only Fuzzing
+        </a>
+      </h2>
+      <div class="publication-authors">
+        Xiao Wu, Junzhou He, <span style="font-weight: bold;">Liyan Huang</span>, Cai Fu, and Weihang Wang
+      </div>
+      <div class="publication-venue">
+        WWW' 2025
+      </div>
+    </article>
+  </div>
