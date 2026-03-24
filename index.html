@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liyan Huang</title>
+  <meta name="description" content="Liyan Huang - PhD student in Computer Science at USC. Research in Software Engineering and Software Security.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="icon" href="images/favicon.ico">
+  <style>
+    :root {
+      --primary: #1a3a5c;
+      --primary-light: #2a5a8c;
+      --bg: #fafafa;
+      --card-bg: #ffffff;
+      --text: #2c3e50;
+      --text-light: #5a6c7e;
+      --border: #e8ecf1;
+      --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --radius: 8px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* --- Top Accent Bar --- */
+    .accent-bar {
+      height: 3px;
+      background: linear-gradient(90deg, #9b0000, #ffcc00);
+    }
+
+    /* --- Top Nav --- */
+    header {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 54px;
+    }
+    nav .logo {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    nav .nav-links { display: flex; gap: 1.75rem; }
+    nav .nav-links a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-size: 0.86rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav .nav-links a:hover { color: var(--primary); }
+    nav .nav-links a.active {
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 2px;
+    }
+
+    /* --- Page Layout --- */
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+      display: flex;
+      gap: 3.5rem;
+      align-items: flex-start;
+      padding-top: 2.5rem;
+    }
+
+    /* --- Sidebar (profile card) --- */
+    .sidebar {
+      width: 260px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 74px;
+    }
+    .sidebar-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.5rem;
+    }
+    .sidebar-photo img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 1.25rem;
+    }
+    .sidebar h1 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 0.2rem;
+    }
+    .sidebar .subtitle {
+      font-size: 0.84rem;
+      color: var(--text-light);
+      text-align: center;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+    }
+    .sidebar-links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .sidebar-links a {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.15s;
+    }
+    .sidebar-links a:hover {
+      background: var(--border);
+      color: var(--primary);
+    }
+    .sidebar-links svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    /* --- Main Content --- */
+    .main {
+      flex: 1;
+      min-width: 0;
+      padding-bottom: 2rem;
+    }
+
+    /* --- Section Styles --- */
+    section {
+      margin-bottom: 2.5rem;
+      scroll-margin-top: 73px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    section h2 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+    }
+
+    /* --- About --- */
+    .about p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      margin-bottom: 0.75rem;
+    }
+    .about a {
+      color: var(--primary-light);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .about a:hover { border-bottom-color: var(--primary-light); }
+
+    /* --- Publications --- */
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .pub-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.3rem;
+      transition: box-shadow 0.2s, opacity 0.5s ease, transform 0.5s ease;
+      border-left: 3px solid var(--border);
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    .pub-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .pub-item:hover { box-shadow: var(--shadow-md); }
+    .pub-item.accent-iclr { border-left-color: #1d4ed8; }
+    .pub-item.accent-www { border-left-color: #b45309; }
+    .pub-item.accent-saner { border-left-color: #047857; }
+    .pub-venue {
+      display: inline-block;
+      padding: 0.12rem 0.55rem;
+      border-radius: 4px;
+      font-size: 0.73rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.4rem;
+    }
+    .venue-iclr { background: #eef4ff; color: #1d4ed8; }
+    .venue-www { background: #fef3e2; color: #b45309; }
+    .venue-saner { background: #ecfdf5; color: #047857; }
+    .pub-title {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+      line-height: 1.5;
+    }
+    .pub-authors {
+      font-size: 0.86rem;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+    .pub-authors .me {
+      text-decoration: underline;
+      color: var(--text);
+    }
+
+    /* --- Education --- */
+    .edu-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .edu-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.3rem;
+      transition: box-shadow 0.2s;
+      border-left: 3px solid var(--border);
+    }
+    .edu-card:hover { box-shadow: var(--shadow-md); }
+    .edu-card.accent-usc { border-left-color: #9b0000; }
+    .edu-card.accent-tsinghua { border-left-color: #660099; }
+    .edu-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .edu-row h3 {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .edu-row p {
+      font-size: 0.88rem;
+      color: var(--text-light);
+    }
+    .edu-row span {
+      font-size: 0.84rem;
+      color: var(--text-light);
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    /* --- Internship --- */
+    .intern-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.3rem;
+      transition: box-shadow 0.2s;
+      border-left: 3px solid var(--border);
+    }
+    .intern-item:hover { box-shadow: var(--shadow-md); }
+    .intern-item.accent-bytedance { border-left-color: #3370ff; }
+    .intern-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .intern-row h3 {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .intern-row p {
+      font-size: 0.88rem;
+      color: var(--text-light);
+    }
+    .intern-row span {
+      font-size: 0.84rem;
+      color: var(--text-light);
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    /* --- Services --- */
+    .service-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .service-list li {
+      font-size: 0.92rem;
+      padding-left: 1rem;
+      position: relative;
+    }
+    .service-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 5px;
+      height: 5px;
+      background: var(--primary-light);
+      border-radius: 50%;
+    }
+    .service-list a {
+      color: var(--primary-light);
+      text-decoration: none;
+    }
+    .service-list a:hover { text-decoration: underline; }
+
+    /* --- Misc --- */
+    .misc p {
+      font-size: 0.92rem;
+      color: var(--text-light);
+    }
+    .misc a {
+      color: var(--primary-light);
+      text-decoration: none;
+    }
+    .misc a:hover { text-decoration: underline; }
+
+    /* --- Footer --- */
+    footer {
+      margin-top: 1rem;
+      padding: 1.25rem 0;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 860px) {
+      .page {
+        flex-direction: column;
+        gap: 2rem;
+        padding-top: 1.5rem;
+      }
+      .sidebar {
+        width: 100%;
+        position: relative;
+        top: 0;
+      }
+      .sidebar-inner {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1.25rem;
+      }
+      .sidebar-photo img { width: 110px; height: 110px; margin-bottom: 0; }
+      .sidebar h1 { text-align: left; width: 100%; margin-top: -0.5rem; }
+      .sidebar .subtitle { text-align: left; width: 100%; margin-bottom: 0; }
+      .sidebar-links { flex-direction: row; flex-wrap: wrap; }
+      .main { max-width: none; }
+      .edu-row, .intern-row { flex-direction: column; gap: 0.1rem; }
+      nav .nav-links { gap: 1rem; }
+      nav .nav-links a { font-size: 0.82rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header>
+    <div class="accent-bar"></div>
+    <nav>
+      <a href="#" class="logo">Liyan Huang</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#publications">Publications</a>
+        <a href="#internship">Internship</a>
+        <a href="#services">Services</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Page Layout: Sidebar + Main -->
+  <div class="page">
+
+    <!-- Sidebar / Profile Card -->
+    <aside class="sidebar">
+      <div class="sidebar-inner">
+        <div class="sidebar-photo">
+          <img src="images/fig2.png" alt="Liyan Huang">
+        </div>
+        <h1>Liyan Huang</h1>
+        <p class="subtitle">Ph.D. Student in Computer Science<br>University of Southern California</p>
+
+        <div class="sidebar-links">
+          <a style="cursor: default;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+            Los Angeles, CA
+          </a>
+          <a href="https://scholar.google.com/citations?user=ctXkzLgAAAAJ&hl" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+            Google Scholar
+          </a>
+          <a href="https://www.linkedin.com/in/liyan-huang-b9776328a" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+
+      <!-- About -->
+      <section class="about" id="about">
+        <h2>About</h2>
+        <p>
+          I am a first-year Ph.D. student in Computer Science at the
+          <strong>University of Southern California</strong>,
+          advised by <a href="https://weihang-wang.github.io">Prof. Weihang Wang</a>.
+          Prior to this, I obtained my M.S. in Computer Science from USC and my B.Eng. in
+          Computer Science and Technology from <strong>Tsinghua University</strong>.
+        </p>
+        <p>
+          My research interests lie in Software Engineering and Software Security,
+          with a focus on applying program analysis and testing techniques to identify and mitigate
+          security and reliability issues in software systems. I am also working on evaluating and enhancing
+          the reliability of language models for code understanding and software engineering tasks.
+        </p>
+      </section>
+
+      <!-- Education -->
+      <section id="education">
+        <h2>Education</h2>
+        <div class="edu-list">
+          <div class="edu-card accent-usc">
+            <div class="edu-row">
+              <h3>University of Southern California</h3>
+              <span>Los Angeles, CA</span>
+            </div>
+            <div class="edu-row">
+              <p>Ph.D. in Computer Science</p>
+              <span>Aug 2025 &ndash; present</span>
+            </div>
+          </div>
+          <div class="edu-card accent-usc">
+            <div class="edu-row">
+              <h3>University of Southern California</h3>
+              <span>Los Angeles, CA</span>
+            </div>
+            <div class="edu-row">
+              <p>M.S. in Computer Science</p>
+              <span>Aug 2023 &ndash; May 2025</span>
+            </div>
+          </div>
+          <div class="edu-card accent-tsinghua">
+            <div class="edu-row">
+              <h3>Tsinghua University</h3>
+              <span>Beijing, China</span>
+            </div>
+            <div class="edu-row">
+              <p>B.Eng. in Computer Science and Technology</p>
+              <span>Aug 2019 &ndash; Jun 2023</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Publications -->
+      <section id="publications">
+        <h2>Publications</h2>
+        <p style="font-size: 0.86rem; color: var(--text-light); margin-bottom: 1rem;">* denotes equal contribution.</p>
+        <div class="pub-list">
+
+          <div class="pub-item accent-iclr">
+            <span class="pub-venue venue-iclr">ICLR 2026</span>
+            <div class="pub-title">CLARC: C/C++ Benchmark for Robust Code Search</div>
+            <div class="pub-authors">
+              Kaicheng Wang*, <span class="me">Liyan Huang*</span>, Weike Fang, and Weihang Wang
+            </div>
+          </div>
+
+          <div class="pub-item accent-www">
+            <span class="pub-venue venue-www">WWW 2026</span>
+            <div class="pub-title">Broken Promise: Differential Analysis of Functional Discrepancies Between WebAssembly and Native Binaries</div>
+            <div class="pub-authors">
+              Xiao Wu*, Alan Romano*, <span class="me">Liyan Huang*</span>, Qiwen Yan, Cai Fu, and Weihang Wang
+            </div>
+          </div>
+
+          <div class="pub-item accent-saner">
+            <span class="pub-venue venue-saner">SANER 2026</span>
+            <div class="pub-title">Reusing Legacy Code in WebAssembly: Key Challenges of Cross-Compilation and Code Semantics Preservation</div>
+            <div class="pub-authors">
+              Sara Baradaran, <span class="me">Liyan Huang</span>, Mukund Raghothaman, and Weihang Wang
+            </div>
+          </div>
+
+          <div class="pub-item accent-www">
+            <span class="pub-venue venue-www">WWW 2025</span>
+            <div class="pub-title">WaSCR: A WebAssembly Instruction-Timing Side Channel Repairer</div>
+            <div class="pub-authors">
+              <span class="me">Liyan Huang*</span>, Junzhou He*, Chao Wang, and Weihang Wang
+            </div>
+          </div>
+
+          <div class="pub-item accent-www">
+            <span class="pub-venue venue-www">WWW 2025</span>
+            <div class="pub-title">WBSan: WebAssembly Bug Detection for Sanitization and Binary-Only Fuzzing</div>
+            <div class="pub-authors">
+              Xiao Wu, Junzhou He, <span class="me">Liyan Huang</span>, Cai Fu, and Weihang Wang
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Internship -->
+      <section id="internship">
+        <h2>Internship</h2>
+        <div class="intern-item accent-bytedance">
+          <div class="intern-row">
+            <h3>ByteDance</h3>
+            <span>Beijing, China</span>
+          </div>
+          <div class="intern-row">
+            <p>Software Engineer, Intern</p>
+            <span>Sep 2022 &ndash; Feb 2023</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Academic Services -->
+      <section id="services">
+        <h2>Academic Services</h2>
+        <ul class="service-list">
+          <li>Reviewer, <a href="https://icml.cc/Conferences/2026" target="_blank">ICML 2026</a></li>
+          <li>Program Committee Member (Security and Privacy, Research Track), <a href="https://www2026.thewebconf.org/" target="_blank">WWW 2026</a></li>
+          <li>Reviewer, <a href="https://www2025.thewebconf.org/" target="_blank">WWW 2025</a></li>
+          <li>Program Committee Member (Student Research Competition), <a href="https://conf.researchr.org/track/ase-2024/ase-2024-student-research-competition-" target="_blank">ASE 2024</a></li>
+        </ul>
+      </section>
+
+      <!-- Beyond Research -->
+      <section class="misc">
+        <h2>Beyond Research</h2>
+        <p>I was a member of the <a href="https://www.cs.tsinghua.edu.cn/info/1217/4901.htm">Sports Enthusiasts Association</a> and the soccer team in the Department of Computer Science and Technology at Tsinghua University.</p>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        &copy; 2026 Liyan Huang. Last updated: March 2026.
+      </footer>
+
+    </main>
+
+  </div>
+
+  <script>
+    const navLinks = document.querySelectorAll('nav .nav-links a[href^="#"]');
+    const sections = [];
+    navLinks.forEach(link => {
+      const id = link.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if (el) sections.push({ id, el, link });
+    });
+
+    function updateActive() {
+      let current = sections[0];
+      for (const s of sections) {
+        if (s.el.getBoundingClientRect().top <= 100) current = s;
+      }
+      navLinks.forEach(l => l.classList.remove('active'));
+      if (current) current.link.classList.add('active');
+    }
+
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('section').forEach(s => observer.observe(s));
+
+    // Staggered fade-in for pub cards
+    const pubObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const cards = e.target.querySelectorAll('.pub-item');
+          cards.forEach((card, i) => {
+            setTimeout(() => card.classList.add('visible'), i * 100);
+          });
+          pubObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    const pubList = document.querySelector('.pub-list');
+    if (pubList) pubObserver.observe(pubList);
+  </script>
+</body>
+</html>
