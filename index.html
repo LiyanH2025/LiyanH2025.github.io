@@ -11,16 +11,17 @@
   <link rel="icon" href="images/favicon.ico">
   <style>
     :root {
-      --primary: #1a3a5c;
-      --primary-light: #2a5a8c;
-      --bg: #fafafa;
+      --primary: #172f49;
+      --primary-light: #315f88;
+      --accent: #9b0000;
+      --bg: #eef2f5;
       --card-bg: #ffffff;
-      --text: #2c3e50;
-      --text-light: #5a6c7e;
-      --border: #e8ecf1;
-      --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-      --radius: 8px;
+      --text: #273747;
+      --text-light: #647383;
+      --border: #e2e7ec;
+      --shadow: 0 1px 2px rgba(23,47,73,0.04), 0 8px 24px rgba(23,47,73,0.05);
+      --shadow-md: 0 12px 30px rgba(23,47,73,0.10);
+      --radius: 12px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -32,6 +33,10 @@
       background: var(--bg);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(circle at 5% 2%, rgba(155,0,0,0.08), transparent 25rem),
+        radial-gradient(circle at 95% 18%, rgba(49,95,136,0.10), transparent 30rem);
+      background-attachment: fixed;
     }
 
     /* --- Top Accent Bar --- */
@@ -42,20 +47,22 @@
 
     /* --- Top Nav --- */
     header {
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 100;
     }
     nav {
-      max-width: 1100px;
+      max-width: 1180px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 54px;
+      height: 64px;
+      padding: 0 2.5rem;
     }
     nav .logo {
       font-family: 'Source Serif 4', Georgia, serif;
@@ -64,92 +71,100 @@
       color: var(--primary);
       text-decoration: none;
     }
-    nav .nav-links { display: flex; gap: 1.75rem; }
+    nav .nav-links { display: flex; gap: 0.35rem; }
     nav .nav-links a {
       text-decoration: none;
       color: var(--text-light);
       font-size: 0.86rem;
       font-weight: 500;
-      transition: color 0.2s;
+      padding: 0.4rem 0.65rem;
+      border-radius: 7px;
+      transition: color 0.2s, background-color 0.2s;
     }
-    nav .nav-links a:hover { color: var(--primary); }
+    nav .nav-links a:hover { color: var(--primary); background: #f2f5f7; }
     nav .nav-links a.active {
       color: var(--primary);
-      border-bottom: 2px solid var(--primary);
-      padding-bottom: 2px;
+      background: #edf2f6;
     }
 
     /* --- Page Layout --- */
     .page {
-      max-width: 1100px;
+      max-width: 1180px;
       margin: 0 auto;
       padding: 0 2.5rem;
       display: flex;
-      gap: 3.5rem;
+      gap: 2rem;
       align-items: flex-start;
-      padding-top: 2.5rem;
+      padding-top: 2.25rem;
+      padding-bottom: 3rem;
     }
 
     /* --- Sidebar (profile card) --- */
     .sidebar {
-      width: 260px;
+      width: 292px;
       flex-shrink: 0;
       position: sticky;
-      top: 74px;
+      top: 84px;
     }
     .sidebar-inner {
       display: flex;
       flex-direction: column;
       align-items: center;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.75rem 1.5rem;
+      background:
+        radial-gradient(circle at 100% 0, rgba(255,204,0,0.16), transparent 14rem),
+        linear-gradient(155deg, #1d3c5b 0%, #10263b 100%);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 20px;
+      padding: 2.15rem 1.75rem 1.6rem;
+      box-shadow: 0 22px 50px rgba(23,47,73,0.22);
     }
     .sidebar-photo img {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
+      width: 196px;
+      height: 196px;
+      border-radius: 18px;
       object-fit: cover;
-      box-shadow: var(--shadow-md);
-      margin-bottom: 1.25rem;
+      box-shadow: 0 14px 32px rgba(0,0,0,0.28);
+      border: 3px solid rgba(255,255,255,0.82);
+      margin-bottom: 1.45rem;
     }
     .sidebar h1 {
       font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 1.45rem;
+      font-size: 1.7rem;
       font-weight: 700;
-      color: var(--primary);
+      color: #ffffff;
       text-align: center;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.35rem;
     }
     .sidebar .subtitle {
-      font-size: 0.84rem;
-      color: var(--text-light);
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.72);
       text-align: center;
       line-height: 1.5;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.15rem;
     }
     .sidebar-links {
       width: 100%;
       display: flex;
       flex-direction: column;
       gap: 0.35rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.14);
     }
     .sidebar-links a {
       display: flex;
       align-items: center;
       gap: 0.55rem;
-      padding: 0.4rem 0.6rem;
+      padding: 0.45rem 0.6rem;
       border-radius: 6px;
       font-size: 0.84rem;
-      color: var(--text-light);
+      color: rgba(255,255,255,0.76);
       text-decoration: none;
       font-weight: 500;
       transition: all 0.15s;
     }
     .sidebar-links a:hover {
-      background: var(--border);
-      color: var(--primary);
+      background: rgba(255,255,255,0.10);
+      color: #ffffff;
     }
     .sidebar-links svg {
       width: 16px;
@@ -162,13 +177,17 @@
     .main {
       flex: 1;
       min-width: 0;
-      padding-bottom: 2rem;
+      padding: 2.6rem 2.8rem 1.5rem;
+      background: rgba(255,255,255,0.96);
+      border: 1px solid rgba(255,255,255,0.8);
+      border-radius: 20px;
+      box-shadow: 0 18px 48px rgba(23,47,73,0.09);
     }
 
     /* --- Section Styles --- */
     section {
-      margin-bottom: 2.5rem;
-      scroll-margin-top: 73px;
+      margin-bottom: 3rem;
+      scroll-margin-top: 84px;
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.5s ease, transform 0.5s ease;
@@ -179,39 +198,54 @@
     }
     section h2 {
       font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 1.4rem;
+      font-size: 1.65rem;
       font-weight: 700;
       color: var(--primary);
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--border);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    section h2::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 52px;
+      height: 3px;
+      border-radius: 2px;
+      background: var(--accent);
     }
 
     /* --- About --- */
     .about p {
-      font-size: 0.95rem;
-      line-height: 1.85;
-      margin-bottom: 0.75rem;
+      max-width: 68ch;
+      font-size: 1.075rem;
+      line-height: 1.72;
+      letter-spacing: -0.008em;
+      margin-bottom: 1rem;
+      color: #26313b;
     }
     .about a {
-      color: var(--primary-light);
+      color: #245f91;
+      font-weight: 500;
       text-decoration: none;
-      border-bottom: 1px solid transparent;
+      border-bottom: 1px solid rgba(36,95,145,0.28);
       transition: border-color 0.2s;
     }
-    .about a:hover { border-bottom-color: var(--primary-light); }
+    .about a:hover { border-bottom-color: #245f91; }
 
     /* --- Publications --- */
     .pub-list {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0.85rem;
     }
     .pub-item {
-      background: var(--card-bg);
+      background: #f8fafb;
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.1rem 1.3rem;
+      padding: 1.3rem 1.5rem;
       transition: box-shadow 0.2s, opacity 0.5s ease, transform 0.5s ease;
       border-left: 3px solid var(--border);
       opacity: 0;
@@ -221,14 +255,14 @@
       opacity: 1;
       transform: translateY(0);
     }
-    .pub-item:hover { box-shadow: var(--shadow-md); }
+    .pub-item:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
     .pub-item.accent-iclr { border-left-color: #1d4ed8; }
     .pub-item.accent-www { border-left-color: #b45309; }
     .pub-item.accent-saner { border-left-color: #047857; }
     .pub-venue {
       display: inline-block;
       padding: 0.12rem 0.55rem;
-      border-radius: 4px;
+      border-radius: 999px;
       font-size: 0.73rem;
       font-weight: 600;
       letter-spacing: 0.03em;
@@ -239,7 +273,7 @@
     .venue-saner { background: #ecfdf5; color: #047857; }
     .pub-title {
       font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 1.02rem;
+      font-size: 1.05rem;
       font-weight: 600;
       color: var(--text);
       margin-bottom: 0.25rem;
@@ -251,7 +285,7 @@
       line-height: 1.6;
     }
     .pub-authors .me {
-      text-decoration: underline;
+      font-weight: 600;
       color: var(--text);
     }
 
@@ -259,17 +293,17 @@
     .edu-list {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.85rem;
     }
     .edu-card {
-      background: var(--card-bg);
+      background: #f8fafb;
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.1rem 1.3rem;
-      transition: box-shadow 0.2s;
+      padding: 1.2rem 1.4rem;
+      transition: box-shadow 0.2s, transform 0.2s;
       border-left: 3px solid var(--border);
     }
-    .edu-card:hover { box-shadow: var(--shadow-md); }
+    .edu-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
     .edu-card.accent-usc { border-left-color: #9b0000; }
     .edu-card.accent-tsinghua { border-left-color: #660099; }
     .edu-row {
@@ -295,14 +329,14 @@
 
     /* --- Internship --- */
     .intern-item {
-      background: var(--card-bg);
+      background: #f8fafb;
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.1rem 1.3rem;
-      transition: box-shadow 0.2s;
+      padding: 1.2rem 1.4rem;
+      transition: box-shadow 0.2s, transform 0.2s;
       border-left: 3px solid var(--border);
     }
-    .intern-item:hover { box-shadow: var(--shadow-md); }
+    .intern-item:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
     .intern-item.accent-bytedance { border-left-color: #3370ff; }
     .intern-row {
       display: flex;
@@ -330,11 +364,11 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 0.45rem;
+      gap: 0.65rem;
     }
     .service-list li {
       font-size: 0.92rem;
-      padding-left: 1rem;
+      padding-left: 1.15rem;
       position: relative;
     }
     .service-list li::before {
@@ -342,8 +376,8 @@
       position: absolute;
       left: 0;
       top: 0.55em;
-      width: 5px;
-      height: 5px;
+      width: 6px;
+      height: 6px;
       background: var(--primary-light);
       border-radius: 50%;
     }
@@ -352,17 +386,6 @@
       text-decoration: none;
     }
     .service-list a:hover { text-decoration: underline; }
-
-    /* --- Misc --- */
-    .misc p {
-      font-size: 0.92rem;
-      color: var(--text-light);
-    }
-    .misc a {
-      color: var(--primary-light);
-      text-decoration: none;
-    }
-    .misc a:hover { text-decoration: underline; }
 
     /* --- Footer --- */
     footer {
@@ -375,9 +398,12 @@
 
     /* --- Responsive --- */
     @media (max-width: 860px) {
+      nav { padding: 0 1.5rem; }
       .page {
         flex-direction: column;
         gap: 2rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
         padding-top: 1.5rem;
       }
       .sidebar {
@@ -386,18 +412,70 @@
         top: 0;
       }
       .sidebar-inner {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        column-gap: 1.25rem;
+        align-items: center;
+        text-align: left;
+      }
+      .sidebar-photo { grid-row: 1 / span 2; }
+      .sidebar-photo img { width: 110px; height: 110px; margin-bottom: 0; }
+      .sidebar h1 { text-align: left; align-self: end; }
+      .sidebar .subtitle { text-align: left; margin-bottom: 0; align-self: start; }
+      .sidebar-links {
+        grid-column: 1 / -1;
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 1.25rem;
+        margin-top: 1rem;
       }
-      .sidebar-photo img { width: 110px; height: 110px; margin-bottom: 0; }
-      .sidebar h1 { text-align: left; width: 100%; margin-top: -0.5rem; }
-      .sidebar .subtitle { text-align: left; width: 100%; margin-bottom: 0; }
-      .sidebar-links { flex-direction: row; flex-wrap: wrap; }
-      .main { max-width: none; }
+      .main { max-width: none; width: 100%; padding: 2.2rem; }
       .edu-row, .intern-row { flex-direction: column; gap: 0.1rem; }
-      nav .nav-links { gap: 1rem; }
+      nav .nav-links { gap: 0; }
       nav .nav-links a { font-size: 0.82rem; }
+    }
+
+    @media (max-width: 680px) {
+      header { position: relative; }
+      nav {
+        height: auto;
+        min-height: 56px;
+        padding: 0.65rem 1rem;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+      nav .nav-links {
+        width: 100%;
+        overflow-x: auto;
+        scrollbar-width: none;
+        padding-bottom: 0.1rem;
+      }
+      nav .nav-links::-webkit-scrollbar { display: none; }
+      nav .nav-links a { white-space: nowrap; padding: 0.35rem 0.55rem; }
+      .page { padding: 1.25rem 1rem 0; }
+      .main { padding: 1.5rem 1.25rem 0.75rem; border-radius: 16px; }
+      section { scroll-margin-top: 1rem; margin-bottom: 2.4rem; }
+      section h2 { font-size: 1.35rem; }
+      .sidebar-inner { padding: 1.25rem; }
+      .pub-item, .edu-card, .intern-item { padding: 1rem 1.1rem; }
+    }
+
+    @media (max-width: 440px) {
+      .sidebar-inner { grid-template-columns: 82px 1fr; column-gap: 1rem; }
+      .sidebar-photo img { width: 82px; height: 82px; }
+      .sidebar h1 { font-size: 1.3rem; }
+      .sidebar .subtitle { font-size: 0.76rem; }
+      .sidebar-links { gap: 0.2rem; }
+      .sidebar-links a { font-size: 0.79rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      section, .pub-item {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
     }
   </style>
 </head>
@@ -439,6 +517,10 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
             Google Scholar
           </a>
+          <a href="https://orcid.org/0009-0003-4929-1478" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM7.8 7.1a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4zm1 10H6.7v-6.2h2.1v6.2zm3.1 0h-2V6.9h3.4c3.7 0 5.4 2.2 5.4 5.1 0 3.4-2.1 5.1-5.4 5.1h-1.4zm.1-8.3v6.4h1.1c2.2 0 3.4-1 3.4-3.2 0-2.1-1.1-3.2-3.4-3.2H12z"/></svg>
+            ORCID
+          </a>
           <a href="https://www.linkedin.com/in/liyan-huang-b9776328a" target="_blank">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
             LinkedIn
@@ -454,17 +536,13 @@
       <section class="about" id="about">
         <h2>About</h2>
         <p>
-          I am a first-year Ph.D. student in Computer Science at the
-          <strong>University of Southern California</strong>,
+          I am a Ph.D. student in Computer Science at the
+          <a href="https://www.usc.edu/">University of Southern California</a>,
           advised by <a href="https://weihang-wang.github.io">Prof. Weihang Wang</a>.
-          Prior to this, I obtained my M.S. in Computer Science from USC and my B.Eng. in
-          Computer Science and Technology from <strong>Tsinghua University</strong>.
-        </p>
-        <p>
-          My research interests lie in Software Engineering and Software Security,
-          with a focus on applying program analysis and testing techniques to identify and mitigate
-          security and reliability issues in software systems. I am also working on evaluating and enhancing
-          the reliability of language models for code understanding and software engineering tasks.
+          My research spans software engineering and software security. I develop techniques for
+          identifying and mitigating security and reliability issues in software systems. I am also
+          interested in evaluating and improving the reliability of language models for code understanding
+          and software engineering tasks.
         </p>
       </section>
 
@@ -573,22 +651,17 @@
       <section id="services">
         <h2>Academic Services</h2>
         <ul class="service-list">
-          <li>Reviewer, <a href="https://icml.cc/Conferences/2026" target="_blank">ICML 2026</a></li>
-          <li>Program Committee Member (Security and Privacy, Research Track), <a href="https://www2026.thewebconf.org/" target="_blank">WWW 2026</a></li>
-          <li>Reviewer, <a href="https://www2025.thewebconf.org/" target="_blank">WWW 2025</a></li>
-          <li>Program Committee Member (Student Research Competition), <a href="https://conf.researchr.org/track/ase-2024/ase-2024-student-research-competition-" target="_blank">ASE 2024</a></li>
+          <li>Reviewer, <a href="https://neurips.cc/Conferences/2026" target="_blank">NeurIPS 2026</a>.</li>
+          <li>Reviewer, <a href="https://icml.cc/Conferences/2026" target="_blank">ICML 2026</a>. Awarded as a Silver Reviewer.</li>
+          <li>Program Committee Member (Security and Privacy, Research Track), <a href="https://www2026.thewebconf.org/" target="_blank">WWW 2026</a>.</li>
+          <li>Reviewer, <a href="https://www2025.thewebconf.org/" target="_blank">WWW 2025</a>.</li>
+          <li>Program Committee Member (Student Research Competition), <a href="https://conf.researchr.org/track/ase-2024/ase-2024-student-research-competition-" target="_blank">ASE 2024</a>.</li>
         </ul>
-      </section>
-
-      <!-- Beyond Research -->
-      <section class="misc">
-        <h2>Beyond Research</h2>
-        <p>I was a member of the <a href="https://www.cs.tsinghua.edu.cn/info/1217/4901.htm">Sports Enthusiasts Association</a> and the soccer team in the Department of Computer Science and Technology at Tsinghua University.</p>
       </section>
 
       <!-- Footer -->
       <footer>
-        &copy; 2026 Liyan Huang. Last updated: March 2026.
+        &copy; 2026 Liyan Huang. Last updated: August 2026.
       </footer>
 
     </main>
